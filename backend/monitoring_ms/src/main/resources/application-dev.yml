@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    platform: postgresql
+    url: jdbc:postgresql://localhost:5432/monitoring
+    username: postgres
+    password: admin
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
