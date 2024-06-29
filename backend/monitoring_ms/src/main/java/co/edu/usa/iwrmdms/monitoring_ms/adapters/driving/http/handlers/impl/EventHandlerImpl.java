@@ -28,8 +28,8 @@ public class EventHandlerImpl implements IEventHandler {
     }
 
     @Override
-    public void updateEvent(Integer idEvent, EventUpdateRequestDto eventUpdateRequestDto) {
-        eventServicePort.updateEvent(idEvent, eventRequestMapper.toUpdateEvent(eventUpdateRequestDto));
+    public void updateEvent(EventUpdateRequestDto eventUpdateRequestDto) {
+        eventServicePort.updateEvent(eventRequestMapper.toUpdateEvent(eventUpdateRequestDto));
     }
 
     @Override

@@ -20,6 +20,9 @@ configurations {
 repositories {
 	mavenCentral()
 }
+/*ext{
+	springCloudVersion = "4.0.2"
+}*/
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.4'
@@ -32,6 +35,17 @@ dependencies {
 	implementation 'io.vavr:vavr:0.10.4'
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+	implementation "org.flywaydb:flyway-core:10.0.1"
+	implementation "org.flywaydb:flyway-database-postgresql:10.0.1"
+/*	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5',
+			'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	implementation 'com.nimbusds:nimbus-jose-jwt:9.37.3'*/
+/*	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'*/
+	//feign client
+/*	implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${springCloudVersion}"
+	implementation 'io.github.openfeign:feign-httpclient:12.3'*/
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
 }
 

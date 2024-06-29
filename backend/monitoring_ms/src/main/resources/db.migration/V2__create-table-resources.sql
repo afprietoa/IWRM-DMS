@@ -1,0 +1,8 @@
+CREATE TABLE resources (
+    resource_id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    type VARCHAR(255) CHECK (type IN ('RIVER','RAVINE','STREAM','CREEK','BROOK','CANAL','RESERVOIR','LAKE','POND','WETLAND','AQUIFER','GROUNDWATER','SPRING','WASH','ESTUARY','DELTA','LAGOON','MARSH','BOG','SWAMP')),
+    latitude FLOAT,
+    longitude FLOAT,
+    location TEXT
+);

@@ -16,10 +16,19 @@ import java.time.LocalDate;
 public class EventEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "event_id")
     private Integer eventId;
+    @Column(name = "description")
     private String description;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "magnitude")
     private Magnitude magnitude;
+    @Column(name = "date")
     private LocalDate date;
-    private Integer pollutantId;
-    private Integer resourceId;
+    @ManyToOne
+    @JoinColumn(name = "pollutant_id")
+    private PollutantEntity pollutant;
+    @ManyToOne
+    @JoinColumn(name = "resource_id")
+    private ResourceEntity resource;
 }

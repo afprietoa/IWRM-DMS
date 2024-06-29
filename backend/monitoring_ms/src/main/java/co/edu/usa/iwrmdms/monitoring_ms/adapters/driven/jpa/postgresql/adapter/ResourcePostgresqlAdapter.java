@@ -45,11 +45,9 @@ public class ResourcePostgresqlAdapter implements IResourcePersistencePort {
     }
 
     @Override
-    public Either<ResourceResponseDto, Resource> getResourceById(Integer idResource) {
+    public ResourceResponseDto getResourceById(Integer idResource) {
          ResourceEntity resourceEntity = resourceRepository.findById(idResource).orElseThrow(ResourceNotFoundException::new);
-        Resource resource = resourceEntityMapper.toResource(resourceEntity);
-        ResourceResponseDto resourceResponseDto = resourceEntityMapper.toResourceResponseDto(resourceEntity);
-        return (resourceResponseDto != null) ? Either.left(resourceResponseDto) : Either.right(resource);
+        return resourceEntityMapper.toResourceResponseDto(resourceEntity);
     }
 
     @Override

@@ -45,11 +45,9 @@ public class EventPostgresqlAdapter implements IEventPersistencePort {
     }
 
     @Override
-    public Either<EventResponseDto, Event> getEventById(Integer idEvent) {
+    public EventResponseDto getEventById(Integer idEvent) {
         EventEntity eventEntity = eventRepository.findById(idEvent).orElseThrow(EvemtNotFoundException::new);
-        Event event = eventEntityMapper.toEvent(eventEntity);
-        EventResponseDto eventResponseDto = eventEntityMapper.toEventResponseDto(eventEntity);
-        return (eventResponseDto != null) ? Either.left(eventResponseDto) : Either.right(event);
+        return eventEntityMapper.toEventResponseDto(eventEntity);
     }
 
     @Override

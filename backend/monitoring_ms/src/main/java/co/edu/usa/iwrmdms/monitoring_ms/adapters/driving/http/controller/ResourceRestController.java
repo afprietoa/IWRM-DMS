@@ -24,9 +24,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class ResourceRestController {
-    private IResourceHandler resourceHandler;
+    private final IResourceHandler resourceHandler;
 
     @Operation(summary = "Create Resource",
             responses = {
@@ -48,8 +49,8 @@ public class ResourceRestController {
                     @ApiResponse(responseCode = "409", description = "Resource update fail.",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @PatchMapping("resource")
-    public ResponseEntity<Map<String,String>> updateResource(@Valid @PathVariable Integer idResource, @RequestBody ResourceUpdateRequestDto resourceUpdateRequestDto){
-        resourceHandler.updateResource(idResource, resourceUpdateRequestDto);
+    public ResponseEntity<Map<String,String>> updateResource(@Valid @RequestBody ResourceUpdateRequestDto resourceUpdateRequestDto){
+        resourceHandler.updateResource(resourceUpdateRequestDto);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(RESPONSE_MESSAGE_KEY, RESOURCE_UPDATED_MESSAGE));
     }

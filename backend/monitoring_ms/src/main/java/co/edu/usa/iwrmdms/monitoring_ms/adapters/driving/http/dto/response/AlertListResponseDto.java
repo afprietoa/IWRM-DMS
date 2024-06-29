@@ -10,6 +10,6 @@ public record AlertListResponseDto(
         Level level,
         String message,
         Integer userId,
-        Integer eventId
+        EventResponseDto event
 ) {
 }

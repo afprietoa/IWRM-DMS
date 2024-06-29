@@ -15,11 +15,20 @@ import java.time.LocalDate;
 public class MeasurementEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "measurement_id")
     private Integer measurementId;
+    @Column(name = "date")
     private LocalDate date;
+    @Column(name = "ph")
     private Float ph;
+    @Column(name = "temperature")
     private Float temperature;
+    @JoinColumn(name = "user_id")
     private Integer userId;
-    private Integer pollutantId;
-    private Integer resourceId;
+    @ManyToOne
+    @JoinColumn(name = "pollutant_id")
+    private PollutantEntity pollutant;
+    @ManyToOne
+    @JoinColumn(name = "resource_id")
+    private ResourceEntity resource;
 }

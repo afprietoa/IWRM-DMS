@@ -3,6 +3,7 @@ package co.edu.usa.iwrmdms.monitoring_ms.domains.usecase;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.MeasurementListResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.MeasurementPaginationResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.MeasurementResponseDto;
+import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.mapper.IMeasurementResponseMapper;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.api.IMeasurementServicePort;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.model.Measurement;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.spi.IMeasurementPersistencePort;
@@ -12,9 +13,10 @@ import java.util.List;
 
 public class MeasurementUseCase implements IMeasurementServicePort {
     private final IMeasurementPersistencePort measurementPersistencePort;
-
-    public MeasurementUseCase(IMeasurementPersistencePort measurementPersistencePort) {
+    private final IMeasurementResponseMapper measurementResponseMapper;
+    public MeasurementUseCase(IMeasurementPersistencePort measurementPersistencePort, IMeasurementResponseMapper measurementResponseMapper) {
         this.measurementPersistencePort = measurementPersistencePort;
+        this.measurementResponseMapper = measurementResponseMapper;
     }
 
     @Override
@@ -23,8 +25,8 @@ public class MeasurementUseCase implements IMeasurementServicePort {
     }
 
     @Override
-    public void updateMeasurement(Integer idMeasurement, Measurement measurement) {
-        Measurement tempMeasurement = measurementPersistencePort.getMeasurementById(idMeasurement).get();
+    public void updateMeasurement(Measurement measurement) {
+        Measurement tempMeasurement = measurementResponseMapper.toMeasurement(this.getMeasurement(measurement.getMeasurementId()));
         tempMeasurement.setDate(measurement.getDate());
         tempMeasurement.setPh(measurement.getPh());
         tempMeasurement.setTemperature(measurement.getTemperature());
@@ -46,7 +48,7 @@ public class MeasurementUseCase implements IMeasurementServicePort {
 
     @Override
     public MeasurementResponseDto getMeasurement(Integer idMeasurement) {
-        return measurementPersistencePort.getMeasurementById(idMeasurement).getLeft();
+        return measurementPersistencePort.getMeasurementById(idMeasurement);
     }
 
     @Override

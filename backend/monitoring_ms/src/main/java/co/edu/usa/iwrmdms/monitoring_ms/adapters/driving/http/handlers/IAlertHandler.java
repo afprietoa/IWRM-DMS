@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IAlertHandler {
     void createAlert(AlertCreateRequestDto alertCreateRequestDto);
-    void updateAlert(Integer idAlert, AlertUpdateRequestDto alertUpdateRequestDto);
+    void updateAlert(AlertUpdateRequestDto alertUpdateRequestDto);
     Page<AlertPaginationResponseDto> getPaginationAlert(Integer pageSize, String sortBy);
     List<AlertListResponseDto> getListAlert();
     AlertResponseDto getAlert(Integer idAlert);

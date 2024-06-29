@@ -13,6 +13,6 @@ public interface IMeasurementPersistencePort {
     void saveMeasurement(Measurement measurement);
     Page<MeasurementPaginationResponseDto> getPaginationMeasurement(Integer pageSize, String sortBy);
     List<MeasurementListResponseDto> getListMeasurement();
-    Either<MeasurementResponseDto, Measurement> getMeasurementById(Integer idMeasurement);
+    MeasurementResponseDto getMeasurementById(Integer idMeasurement);
     void deleteMeasurement(Integer idMeasurement);
 }

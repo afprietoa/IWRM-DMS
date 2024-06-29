@@ -13,6 +13,6 @@ public interface IResourcePersistencePort {
     void saveResource(Resource resource);
     Page<ResourcePaginationResponseDto> getPaginationResource(Integer pageSize, String sortBy);
     List<ResourceListResponseDto> getListResource();
-    Either<ResourceResponseDto, Resource> getResourceById(Integer idResource);
+    ResourceResponseDto getResourceById(Integer idResource);
     void deleteResource(Integer idResource);
 }

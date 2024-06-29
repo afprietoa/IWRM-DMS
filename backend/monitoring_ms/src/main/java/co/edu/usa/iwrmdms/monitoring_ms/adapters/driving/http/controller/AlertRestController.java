@@ -28,9 +28,10 @@ import static co.edu.usa.iwrmdms.monitoring_ms.configuration.Constants.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class AlertRestController {
-    private IAlertHandler alertHandler;
+    private final IAlertHandler alertHandler;
 
     @Operation(summary = "Create Alert",
             responses = {
@@ -52,8 +53,8 @@ public class AlertRestController {
                     @ApiResponse(responseCode = "409", description = "alert update fail.",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @PatchMapping("alert")
-    public ResponseEntity<Map<String,String>> updateAlert(@Valid @PathVariable Integer idAlert, @RequestBody AlertUpdateRequestDto alertUpdateRequestDto){
-        alertHandler.updateAlert(idAlert, alertUpdateRequestDto);
+    public ResponseEntity<Map<String,String>> updateAlert(@Valid @RequestBody AlertUpdateRequestDto alertUpdateRequestDto){
+        alertHandler.updateAlert(alertUpdateRequestDto);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(RESPONSE_MESSAGE_KEY, ALERT_UPDATED_MESSAGE));
     }

@@ -30,10 +30,11 @@ import static co.edu.usa.iwrmdms.monitoring_ms.configuration.Constants.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class EventRestController {
 
-    private IEventHandler eventHandler;
+    private final IEventHandler eventHandler;
 
     @Operation(summary = "Create Event",
             responses = {
@@ -55,8 +56,8 @@ public class EventRestController {
                     @ApiResponse(responseCode = "409", description = "event update fail.",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @PatchMapping("event")
-    public ResponseEntity<Map<String,String>> updateEvent(@Valid @PathVariable Integer idEvent, @RequestBody EventUpdateRequestDto eventUpdateRequestDto){
-        eventHandler.updateEvent(idEvent, eventUpdateRequestDto);
+    public ResponseEntity<Map<String,String>> updateEvent(@Valid @RequestBody EventUpdateRequestDto eventUpdateRequestDto){
+        eventHandler.updateEvent(eventUpdateRequestDto);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(RESPONSE_MESSAGE_KEY, EVENT_UPDATED_MESSAGE));
     }

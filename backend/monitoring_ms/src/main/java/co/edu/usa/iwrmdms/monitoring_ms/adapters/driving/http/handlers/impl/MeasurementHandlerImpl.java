@@ -28,8 +28,8 @@ public class MeasurementHandlerImpl implements IMeasurementHandler {
     }
 
     @Override
-    public void updateMeasurement(Integer idMeasurement, MeasurementUpdateRequestDto measurementUpdateRequestDto) {
-        measurementServicePort.updateMeasurement(idMeasurement, measurementRequestMapper.toUpdateMeasurement(measurementUpdateRequestDto));
+    public void updateMeasurement(MeasurementUpdateRequestDto measurementUpdateRequestDto) {
+        measurementServicePort.updateMeasurement(measurementRequestMapper.toUpdateMeasurement(measurementUpdateRequestDto));
     }
 
     @Override

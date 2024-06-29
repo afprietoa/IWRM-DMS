@@ -29,8 +29,8 @@ public class PollutantHandlerImpl implements IPollutantHandler {
     }
 
     @Override
-    public void updatePollutant(Integer idPollutant, PollutantUpdateRequestDto pollutantUpdateRequestDto) {
-        pollutantServicePort.updatePollutant(idPollutant,  pollutantRequestMapper.toUpdatePollutant(pollutantUpdateRequestDto));
+    public void updatePollutant(PollutantUpdateRequestDto pollutantUpdateRequestDto) {
+        pollutantServicePort.updatePollutant(pollutantRequestMapper.toUpdatePollutant(pollutantUpdateRequestDto));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class PollutantHandlerImpl implements IPollutantHandler {
 
     @Override
     public PollutantResponseDto getPollutant(Integer idPollutant) {
-        return null;
+        return pollutantServicePort.getPollutant(idPollutant);
     }
 
     @Override

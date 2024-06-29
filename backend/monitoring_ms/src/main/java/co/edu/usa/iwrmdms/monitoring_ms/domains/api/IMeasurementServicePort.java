@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IMeasurementServicePort {
     void createMeasurement(Measurement measurement);
-    void updateMeasurement(Integer idMeasurement, Measurement measurement);
+    void updateMeasurement(Measurement measurement);
     Page<MeasurementPaginationResponseDto> getPaginationMeasurement(Integer pageSize, String sortBy);
     List<MeasurementListResponseDto> getListMeasurement();
     MeasurementResponseDto getMeasurement(Integer idMeasurement);

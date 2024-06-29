@@ -16,10 +16,18 @@ import java.time.LocalDate;
 public class AlertEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "alert_id")
     private Integer alertId;
+    @Column(name = "date")
     private LocalDate date;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "level")
     private Level level;
+    @Column(name = "message")
     private String message;
+    @JoinColumn(name = "user_id")
     private Integer userId;
-    private Integer eventId;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private EventEntity event;
 }

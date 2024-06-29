@@ -27,7 +27,7 @@ public class Constants {
     public static final String RESPONSE_ERROR_MESSAGE_KEY = "error";
     public  static final String DIFFERENT_RESOURCE_DELETE_ERROR = "The resource belong other resource.";
     //
-    public static final String SWAGGER_TITLE_MESSAGE = "Scheduling Management";
+    public static final String SWAGGER_TITLE_MESSAGE = "Monitoring Management";
     public static final String SWAGGER_DESCRIPTION_MESSAGE = "Management API REST";
     public static final String SWAGGER_VERSION_MESSAGE = "1.0.0";
     public static final String SWAGGER_LICENSE_NAME_MESSAGE = "Apache 2.0";

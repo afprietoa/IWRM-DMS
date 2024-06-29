@@ -13,6 +13,6 @@ public interface IEventPersistencePort {
     void saveEvent(Event event);
     Page<EventPaginationResponseDto> getPaginationEvent(Integer pageSize, String sortBy);
     List<EventListResponseDto> getListEvent();
-    Either<EventResponseDto, Event> getEventById(Integer idEvent);
+    EventResponseDto getEventById(Integer idEvent);
     void deleteEvent(Integer idEvent);
 }

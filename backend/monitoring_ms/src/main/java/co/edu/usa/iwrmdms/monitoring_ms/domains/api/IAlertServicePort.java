@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IAlertServicePort {
     void createAlert(Alert alert);
-    void updateAlert(Integer idAlert, Alert alert);
+    void updateAlert(Alert alert);
     Page<AlertPaginationResponseDto> getPaginationAlert(Integer pageSize, String sortBy);
     List<AlertListResponseDto> getListAlert();
     AlertResponseDto getAlert(Integer idAlert);

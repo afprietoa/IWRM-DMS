@@ -7,7 +7,7 @@ public record MeasurementPaginationResponseDto(
         Float ph,
         Float temperature,
         Integer userId,
-        Integer pollutantId,
-        Integer resourceId
+        PollutantResponseDto pollutant,
+        ResourceResponseDto resource
 ) {
 }

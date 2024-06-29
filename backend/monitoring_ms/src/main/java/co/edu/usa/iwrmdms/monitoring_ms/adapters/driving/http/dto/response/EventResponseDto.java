@@ -5,10 +5,11 @@ import co.edu.usa.iwrmdms.monitoring_ms.domains.model.enums.Magnitude;
 import java.time.LocalDate;
 
 public record EventResponseDto(
+        Integer eventId,
         String description,
         Magnitude magnitude,
         LocalDate date,
-        Integer pollutantId,
-        Integer resourceId
+        PollutantResponseDto pollutant,
+        ResourceResponseDto resource
 ) {
 }

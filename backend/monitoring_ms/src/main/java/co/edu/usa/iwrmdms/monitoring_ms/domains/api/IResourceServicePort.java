@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IResourceServicePort {
     void createResource(Resource resource);
-    void updateResource(Integer idResource, Resource resource);
+    void updateResource(Resource resource);
     Page<ResourcePaginationResponseDto> getPaginationResource(Integer pageSize, String sortBy);
     List<ResourceListResponseDto> getListResource();
     ResourceResponseDto getResource(Integer idResource);

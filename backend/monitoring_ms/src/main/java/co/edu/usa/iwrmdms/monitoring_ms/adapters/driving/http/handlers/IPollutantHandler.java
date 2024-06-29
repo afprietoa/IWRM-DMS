@@ -11,7 +11,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 public interface IPollutantHandler {
     void createPollutant(PollutantCreateRequestDto pollutantCreateRequestDto);
-    void updatePollutant(Integer idPollutant, PollutantUpdateRequestDto pollutantUpdateRequestDto);
+    void updatePollutant(PollutantUpdateRequestDto pollutantUpdateRequestDto);
     Page<PollutantPaginationResponseDto> getPaginationPollutant(Integer pageSize, String sortBy);
     List<PollutantListResponseDto> getListPollutant();
     PollutantResponseDto getPollutant(Integer idPollutant);

@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IEventHandler {
     void createEvent(EventCreateRequestDto eventCreateRequestDto);
-    void updateEvent(Integer idEvent, EventUpdateRequestDto eventUpdateRequestDto);
+    void updateEvent(EventUpdateRequestDto eventUpdateRequestDto);
     Page<EventPaginationResponseDto> getPaginationEvent(Integer pageSize, String sortBy);
     List<EventListResponseDto> getListEvent();
     EventResponseDto getEvent(Integer idEvent);

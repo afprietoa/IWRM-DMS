@@ -45,11 +45,9 @@ public class PollutantPostgresqlAdapter implements IPollutantPersistencePort {
     }
 
     @Override
-    public Either<PollutantResponseDto, Pollutant> getPollutantById(Integer idPollutant) {
+    public PollutantResponseDto getPollutantById(Integer idPollutant) {
         PollutantEntity pollutantEntity = pollutantRepository.findById(idPollutant).orElseThrow(PollutantNotFoundException::new);
-        Pollutant pollutant = pollutantEntityMapper.toPollutant(pollutantEntity);
-        PollutantResponseDto pollutantResponseDto = pollutantEntityMapper.toPollutantResponseDto(pollutantEntity);
-        return (pollutantResponseDto != null) ? Either.left(pollutantResponseDto) : Either.right(pollutant);
+        return pollutantEntityMapper.toPollutantResponseDto(pollutantEntity);
     }
 
     @Override

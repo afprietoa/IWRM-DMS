@@ -45,11 +45,9 @@ public class MeasurementPostgresqlAdapter implements IMeasurementPersistencePort
     }
 
     @Override
-    public Either<MeasurementResponseDto, Measurement> getMeasurementById(Integer idMeasurement) {
+    public MeasurementResponseDto getMeasurementById(Integer idMeasurement) {
         MeasurementEntity measurementEntity = measurementRepository.findById(idMeasurement).orElseThrow(MeasurementNotFoundException::new);
-        Measurement measurement = measurementEntityMapper.toMeasurement(measurementEntity);
-        MeasurementResponseDto measurementResponseDto = measurementEntityMapper.toMeasurementResponseDto(measurementEntity);
-        return (measurementResponseDto != null) ? Either.left(measurementResponseDto) : Either.right(measurement);
+        return  measurementEntityMapper.toMeasurementResponseDto(measurementEntity);
     }
 
     @Override

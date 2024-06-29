@@ -9,7 +9,7 @@ public record EventListResponseDto(
         String description,
         Magnitude magnitude,
         LocalDate date,
-        Integer pollutantId,
-        Integer resourceId
+        PollutantResponseDto pollutant,
+        ResourceResponseDto resource
 ) {
 }

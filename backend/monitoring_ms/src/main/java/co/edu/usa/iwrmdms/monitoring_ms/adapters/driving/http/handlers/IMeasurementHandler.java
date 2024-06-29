@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IMeasurementHandler {
     void createMeasurement(MeasurementCreateRequestDto measurementCreateRequestDto);
-    void updateMeasurement(Integer idMeasurement, MeasurementUpdateRequestDto measurementUpdateRequestDto);
+    void updateMeasurement(MeasurementUpdateRequestDto measurementUpdateRequestDto);
     Page<MeasurementPaginationResponseDto> getPaginationMeasurement(Integer pageSize, String sortBy);
     List<MeasurementListResponseDto> getListMeasurement();
     MeasurementResponseDto getMeasurement(Integer idMeasurement);

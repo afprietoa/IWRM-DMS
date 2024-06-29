@@ -9,6 +9,6 @@ public record AlertPaginationResponseDto(
         Level level,
         String message,
         Integer userId,
-        Integer eventId
+        EventResponseDto event
 ) {
 }

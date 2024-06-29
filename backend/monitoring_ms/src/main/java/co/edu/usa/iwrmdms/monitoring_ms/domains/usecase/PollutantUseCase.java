@@ -3,6 +3,7 @@ package co.edu.usa.iwrmdms.monitoring_ms.domains.usecase;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.PollutantListResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.PollutantPaginationResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.PollutantResponseDto;
+import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.mapper.IPollutantResponseMapper;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.api.IPollutantServicePort;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.model.Pollutant;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.spi.IPollutantPersistencePort;
@@ -12,9 +13,10 @@ import java.util.List;
 
 public class PollutantUseCase implements IPollutantServicePort {
     private final IPollutantPersistencePort pollutantPersistencePort;
-
-    public PollutantUseCase(IPollutantPersistencePort pollutantPersistencePort) {
+    private final IPollutantResponseMapper pollutantResponseMapper;
+    public PollutantUseCase(IPollutantPersistencePort pollutantPersistencePort, IPollutantResponseMapper pollutantResponseMapper) {
         this.pollutantPersistencePort = pollutantPersistencePort;
+        this.pollutantResponseMapper = pollutantResponseMapper;
     }
 
     @Override
@@ -23,8 +25,8 @@ public class PollutantUseCase implements IPollutantServicePort {
     }
 
     @Override
-    public void updatePollutant(Integer idPollutant, Pollutant pollutant) {
-        Pollutant tempPollutant = pollutantPersistencePort.getPollutantById(idPollutant).get();
+    public void updatePollutant(Pollutant pollutant) {
+        Pollutant tempPollutant = pollutantResponseMapper.toPollutant(this.getPollutant(pollutant.getPollutantId()));
         tempPollutant.setName(pollutant.getName());
         tempPollutant.setLoad(pollutant.getLoad());
         pollutantPersistencePort.savePollutant(tempPollutant);
@@ -42,7 +44,7 @@ public class PollutantUseCase implements IPollutantServicePort {
 
     @Override
     public PollutantResponseDto getPollutant(Integer idPollutant) {
-        return pollutantPersistencePort.getPollutantById(idPollutant).getLeft();
+        return pollutantPersistencePort.getPollutantById(idPollutant);
     }
 
     @Override

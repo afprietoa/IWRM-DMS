@@ -3,6 +3,7 @@ package co.edu.usa.iwrmdms.monitoring_ms.domains.usecase;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.EventListResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.EventPaginationResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.EventResponseDto;
+import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.mapper.IEventResponseMapper;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.api.IEventServicePort;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.model.Event;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.spi.IEventPersistencePort;
@@ -12,9 +13,11 @@ import java.util.List;
 
 public class EventUseCase implements IEventServicePort {
     private final IEventPersistencePort eventPersistencePort;
+    private final IEventResponseMapper eventResponseMapper;
 
-    public EventUseCase(IEventPersistencePort eventPersistencePort) {
+    public EventUseCase(IEventPersistencePort eventPersistencePort, IEventResponseMapper eventResponseMapper) {
         this.eventPersistencePort = eventPersistencePort;
+        this.eventResponseMapper = eventResponseMapper;
     }
 
     @Override
@@ -23,8 +26,8 @@ public class EventUseCase implements IEventServicePort {
     }
 
     @Override
-    public void updateEvent(Integer idEvent, Event event) {
-        Event tempEvent = eventPersistencePort.getEventById(idEvent).get();
+    public void updateEvent(Event event) {
+        Event tempEvent = eventResponseMapper.toEvent(this.getEvent(event.getEventId()));
         tempEvent.setDescription(event.getDescription());
         tempEvent.setMagnitude(event.getMagnitude());
         tempEvent.setDate(event.getDate());
@@ -45,7 +48,7 @@ public class EventUseCase implements IEventServicePort {
 
     @Override
     public EventResponseDto getEvent(Integer idEvent) {
-        return eventPersistencePort.getEventById(idEvent).getLeft();
+        return eventPersistencePort.getEventById(idEvent);
     }
 
     @Override

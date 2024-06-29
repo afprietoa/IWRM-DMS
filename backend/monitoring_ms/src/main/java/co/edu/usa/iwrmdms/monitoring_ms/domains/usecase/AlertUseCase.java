@@ -3,6 +3,7 @@ package co.edu.usa.iwrmdms.monitoring_ms.domains.usecase;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.AlertListResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.AlertPaginationResponseDto;
 import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.dto.response.AlertResponseDto;
+import co.edu.usa.iwrmdms.monitoring_ms.adapters.driving.http.mapper.IAlertResponseMapper;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.api.IAlertServicePort;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.model.Alert;
 import co.edu.usa.iwrmdms.monitoring_ms.domains.spi.IAlertPersistencePort;
@@ -12,9 +13,10 @@ import java.util.List;
 
 public class AlertUseCase implements IAlertServicePort {
     private final IAlertPersistencePort alertPersistencePort;
-
-    public AlertUseCase(IAlertPersistencePort alertPersistencePort) {
+    private final IAlertResponseMapper alertResponseMapper;
+    public AlertUseCase(IAlertPersistencePort alertPersistencePort, IAlertResponseMapper alertResponseMapper) {
         this.alertPersistencePort = alertPersistencePort;
+        this.alertResponseMapper = alertResponseMapper;
     }
 
     @Override
@@ -23,8 +25,8 @@ public class AlertUseCase implements IAlertServicePort {
     }
 
     @Override
-    public void updateAlert(Integer idAlert, Alert alert) {
-        Alert tempAlert = alertPersistencePort.getAlertById(idAlert).get();
+    public void updateAlert(Alert alert) {
+        Alert tempAlert = alertResponseMapper.toAlert(this.getAlert(alert.getAlertId()));
         tempAlert.setDate(alert.getDate());
         tempAlert.setLevel(alert.getLevel());
         tempAlert.setMessage(alert.getMessage());
@@ -45,7 +47,7 @@ public class AlertUseCase implements IAlertServicePort {
 
     @Override
     public AlertResponseDto getAlert(Integer idAlert) {
-        return alertPersistencePort.getAlertById(idAlert).getLeft();
+        return alertPersistencePort.getAlertById(idAlert);
     }
 
     @Override

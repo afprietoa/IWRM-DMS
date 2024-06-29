@@ -13,7 +13,10 @@ import lombok.NoArgsConstructor;
 public class PollutantEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pollutant_id")
     private Integer pollutantId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "load")
     private Float load;
 }

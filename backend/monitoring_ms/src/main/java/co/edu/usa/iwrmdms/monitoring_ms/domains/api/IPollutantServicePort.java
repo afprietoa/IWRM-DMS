@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IPollutantServicePort {
     void createPollutant(Pollutant pollutant);
-    void updatePollutant(Integer idPollutant, Pollutant pollutant);
+    void updatePollutant(Pollutant pollutant);
     Page<PollutantPaginationResponseDto> getPaginationPollutant(Integer pageSize, String sortBy);
     List<PollutantListResponseDto> getListPollutant();
     PollutantResponseDto getPollutant(Integer idPollutant);

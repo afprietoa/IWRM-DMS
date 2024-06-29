@@ -13,6 +13,6 @@ public interface IAlertPersistencePort {
     void saveAlert(Alert alert);
     Page<AlertPaginationResponseDto> getPaginationAlert(Integer pageSize, String sortBy);
     List<AlertListResponseDto> getListAlert();
-    Either<AlertResponseDto, Alert> getAlertById(Integer idAlert);
+    AlertResponseDto getAlertById(Integer idAlert);
     void deleteAlert(Integer idAlert);
 }

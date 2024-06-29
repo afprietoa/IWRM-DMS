@@ -15,10 +15,17 @@ import lombok.NoArgsConstructor;
 public class ResourceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "resource_id")
     private Integer resourceId;
+    @Column(name = "name")
     private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private Type type;
+    @Column(name = "latitude")
     private Float latitude;
+    @Column(name = "longitude")
     private Float longitude;
+    @Column(name = "location")
     private String location;
 }

@@ -8,7 +8,7 @@ public record EventPaginationResponseDto(
         String description,
         Magnitude magnitude,
         LocalDate date,
-        Integer pollutantId,
-        Integer resourceId
+        PollutantResponseDto pollutant,
+        ResourceResponseDto resource
 ) {
 }

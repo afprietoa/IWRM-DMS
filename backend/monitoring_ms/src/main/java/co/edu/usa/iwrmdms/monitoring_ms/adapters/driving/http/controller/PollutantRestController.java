@@ -29,9 +29,10 @@ import static co.edu.usa.iwrmdms.monitoring_ms.configuration.Constants.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class PollutantRestController {
-    private IPollutantHandler pollutantHandler;
+    private final IPollutantHandler pollutantHandler;
 
     @Operation(summary = "Create pollutant",
             responses = {
@@ -53,8 +54,8 @@ public class PollutantRestController {
                     @ApiResponse(responseCode = "409", description = "pollutant update fail.",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @PatchMapping("pollutant")
-    public ResponseEntity<Map<String,String>> updatePollutant(@Valid @PathVariable Integer idPollutant, @RequestBody PollutantUpdateRequestDto pollutantUpdateRequestDto){
-        pollutantHandler.updatePollutant(idPollutant, pollutantUpdateRequestDto);
+    public ResponseEntity<Map<String,String>> updatePollutant(@Valid @RequestBody PollutantUpdateRequestDto pollutantUpdateRequestDto){
+        pollutantHandler.updatePollutant(pollutantUpdateRequestDto);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(RESPONSE_MESSAGE_KEY, POLLUTANT_UPDATED_MESSAGE));
     }

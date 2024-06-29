@@ -29,9 +29,10 @@ import static co.edu.usa.iwrmdms.monitoring_ms.configuration.Constants.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class MeasurementController {
-    private IMeasurementHandler measurementHandler;
+    private final IMeasurementHandler measurementHandler;
 
     @Operation(summary = "Create measurement",
             responses = {
@@ -53,8 +54,8 @@ public class MeasurementController {
                     @ApiResponse(responseCode = "409", description = "measurement update fail.",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @PatchMapping("measurement")
-    public ResponseEntity<Map<String,String>> updateMeasurement(@Valid @PathVariable Integer idMeasurement, @RequestBody MeasurementUpdateRequestDto measurementUpdateRequestDto){
-        measurementHandler.updateMeasurement(idMeasurement, measurementUpdateRequestDto);
+    public ResponseEntity<Map<String,String>> updateMeasurement(@Valid @RequestBody MeasurementUpdateRequestDto measurementUpdateRequestDto){
+        measurementHandler.updateMeasurement(measurementUpdateRequestDto);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(RESPONSE_MESSAGE_KEY, MEASUREMENT_UPDATED_MESSAGE));
     }

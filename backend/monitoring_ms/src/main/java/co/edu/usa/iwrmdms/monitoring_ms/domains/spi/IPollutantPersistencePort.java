@@ -14,6 +14,6 @@ public interface IPollutantPersistencePort {
     void savePollutant(Pollutant pollutant);
     Page<PollutantPaginationResponseDto> getPaginationPollutant(Integer pageSize, String sortBy);
     List<PollutantListResponseDto> getListPollutant();
-    Either<PollutantResponseDto, Pollutant> getPollutantById(Integer idPollutant);
+    PollutantResponseDto getPollutantById(Integer idPollutant);
     void deletePollutant(Integer idPollutant);
 }

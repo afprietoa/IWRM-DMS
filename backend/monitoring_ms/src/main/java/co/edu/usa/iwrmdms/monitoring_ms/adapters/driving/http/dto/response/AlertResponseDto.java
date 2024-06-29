@@ -5,10 +5,11 @@ import co.edu.usa.iwrmdms.monitoring_ms.domains.model.enums.Level;
 import java.time.LocalDate;
 
 public record AlertResponseDto(
+        Integer alertId,
         LocalDate date,
         Level level,
         String message,
         Integer userId,
-        Integer eventId
+        EventResponseDto event
 ) {
 }

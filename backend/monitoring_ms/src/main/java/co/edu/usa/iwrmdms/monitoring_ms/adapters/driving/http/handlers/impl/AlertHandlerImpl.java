@@ -28,8 +28,8 @@ public class AlertHandlerImpl implements IAlertHandler {
     }
 
     @Override
-    public void updateAlert(Integer idAlert, AlertUpdateRequestDto alertUpdateRequestDto) {
-        alertServicePort.updateAlert(idAlert, alertRequestMapper.toUpdateAlert(alertUpdateRequestDto));
+    public void updateAlert(AlertUpdateRequestDto alertUpdateRequestDto) {
+        alertServicePort.updateAlert(alertRequestMapper.toUpdateAlert(alertUpdateRequestDto));
     }
 
     @Override

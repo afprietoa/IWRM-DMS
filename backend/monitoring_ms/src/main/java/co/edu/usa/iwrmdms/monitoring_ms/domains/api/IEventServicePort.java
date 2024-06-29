@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IEventServicePort {
     void createEvent(Event event);
-    void updateEvent(Integer idEvent, Event event);
+    void updateEvent(Event event);
     Page<EventPaginationResponseDto> getPaginationEvent(Integer pageSize, String sortBy);
     List<EventListResponseDto> getListEvent();
     EventResponseDto getEvent(Integer idEvent);

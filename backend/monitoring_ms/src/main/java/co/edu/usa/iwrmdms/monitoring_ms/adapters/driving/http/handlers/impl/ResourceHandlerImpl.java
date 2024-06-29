@@ -27,8 +27,8 @@ public class ResourceHandlerImpl implements IResourceHandler {
     }
 
     @Override
-    public void updateResource(Integer idResource, ResourceUpdateRequestDto resourceUpdateRequestDto) {
-        resourceServicePort.updateResource(idResource, resourceRequestMapper.toUpdateResource(resourceUpdateRequestDto));
+    public void updateResource(ResourceUpdateRequestDto resourceUpdateRequestDto) {
+        resourceServicePort.updateResource(resourceRequestMapper.toUpdateResource(resourceUpdateRequestDto));
     }
 
     @Override

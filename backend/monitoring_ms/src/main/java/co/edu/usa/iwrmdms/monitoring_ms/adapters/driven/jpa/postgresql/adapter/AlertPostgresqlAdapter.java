@@ -45,11 +45,10 @@ public class AlertPostgresqlAdapter implements IAlertPersistencePort {
     }
 
     @Override
-    public Either<AlertResponseDto, Alert> getAlertById(Integer idAlert) {
+    public AlertResponseDto getAlertById(Integer idAlert) {
         AlertEntity alertEntity = alertRepository.findById(idAlert).orElseThrow(AlertNotFoundException::new);
-        Alert alert = alertEntityMapper.toAlert(alertEntity);
-        AlertResponseDto alertResponseDto = alertEntityMapper.toAlertResponseDto(alertEntity);
-        return (alertResponseDto != null) ? Either.left(alertResponseDto) : Either.right(alert);
+        return  alertEntityMapper.toAlertResponseDto(alertEntity);
+
     }
 
     @Override
